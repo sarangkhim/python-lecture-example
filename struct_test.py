@@ -11,3 +11,8 @@ if ft == b'STM32F':
     moder |= 0b01 << 8 * 2
     odr |= 0b1 << 8
     print("modity\n\tmoder = {}\n\t  idr = {} \n\t  odr = {}".format(bin(moder), bin(idr), bin(odr)))
+
+    f.seek(6)
+    f.write(struct.pack('I', moder))
+    f.seek(4, 1)
+    f.write(struct.pack('I', odr))
